@@ -1,3 +1,4 @@
+
 import java.math.BigInteger;
 import java.util.Scanner;
 
@@ -35,9 +36,10 @@ public class RSADecrypt {
 		BigInteger q = in.nextBigInteger();
 		System.out.println("Enter Private Key(i.e, d): ");
 		int d = in.nextInt();
-	    BigInteger k = s.pow(d);
+		BigInteger dp = BigInteger.valueOf(d).mod(p.subtract(BigInteger.ONE));
+		BigInteger dq = BigInteger.valueOf(d).mod(q.subtract(BigInteger.ONE));
 		BigInteger num[] = {p,q};
-		BigInteger rem[] = {k,k};
+		BigInteger rem[] = {s.pow(dp.intValue()),s.pow(dq.intValue())};
 		System.out.println("Your Message is: "+CRT(num,rem));
 	}
 	
